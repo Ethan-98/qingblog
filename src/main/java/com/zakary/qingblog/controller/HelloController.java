@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloContronller {
+public class HelloController {
     @Value("${mysql.dbUrl}")
         private String dbUrl;
     @RequestMapping("/hello")
