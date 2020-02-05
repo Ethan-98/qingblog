@@ -22,6 +22,8 @@ spring:
 
 mybatis:
   mapper-locations: classpath*:com/zakary/qingblog/mapper/xml/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 server:
   port: 8080
   servlet:
