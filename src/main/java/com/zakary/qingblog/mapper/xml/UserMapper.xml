@@ -13,7 +13,7 @@
     <result column="user_mail" jdbcType="VARCHAR" property="userMail" />
     <result column="user_register_date" jdbcType="DATE" property="userRegisterDate" />
     <result column="user_image" jdbcType="VARCHAR" property="userImage" />
-    <result column="user_state" jdbcType="CHAR" property="userState" />
+    <result column="user_state" jdbcType="INTEGER" property="userState" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -33,7 +33,7 @@
       user_image, user_state)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR},
       #{userTel,jdbcType=VARCHAR}, #{userMail,jdbcType=VARCHAR}, #{userRegisterDate,jdbcType=DATE},
-      #{userImage,jdbcType=VARCHAR}, #{userState,jdbcType=CHAR})
+      #{userImage,jdbcType=VARCHAR}, #{userState,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.zakary.qingblog.domain.User">
     <!--
@@ -47,7 +47,7 @@
       user_mail = #{userMail,jdbcType=VARCHAR},
       user_register_date = #{userRegisterDate,jdbcType=DATE},
       user_image = #{userImage,jdbcType=VARCHAR},
-      user_state = #{userState,jdbcType=CHAR}
+      user_state = #{userState,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -69,15 +69,19 @@
     user_image, user_state
     from user
   </select>
-  <select id="selectByUsername" parameterType="java.lang.String" resultType="com.zakary.qingblog.domain.User">
+  <select id="selectByUserMail" parameterType="java.lang.String" resultType="com.zakary.qingblog.domain.User">
     select user_id, user_name, user_password, user_tel, user_mail, user_register_date,
     user_image, user_state
     from user
-    where user_name = #{userName,jdbcType=VARCHAR}
+    where user_mail = #{userMail,jdbcType=VARCHAR}
   </select>
-  <select id="selectCountByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+  <select id="selectCountByUserMail" parameterType="java.lang.String" resultType="java.lang.Integer">
     select count(*)
     from user
-    where user_name = #{userName,jdbcType=VARCHAR}
+    where user_mail = #{userMail,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllCount" resultType="java.lang.Integer">
+    select count(*)
+    from user
   </select>
 </mapper>

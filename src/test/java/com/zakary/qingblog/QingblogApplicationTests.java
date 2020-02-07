@@ -30,5 +30,15 @@ class QingblogApplicationTests {
         user.setUserPassword("12345678");
         loginService.login(user);
     }
+    @Test
+    public  void register(){
+        User user=new User();
+        user.setUserName("test1");
+        user.setUserPassword("12345678");
+        user.setUserState(0);
+        user.setUserMail("xxx1@gmail.com");
+        user.setUserTel("12345678");
+        loginService.register(user);
+    }
 
 }

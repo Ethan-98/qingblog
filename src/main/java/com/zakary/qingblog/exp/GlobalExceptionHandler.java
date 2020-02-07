@@ -23,12 +23,12 @@ public class GlobalExceptionHandler {
     JSONResult handleException(Exception e){
         logger.error(e.getMessage());
         e.printStackTrace();
-        return new JSONResult(null,"","未知错误，操作失败");
+        return JSONResult.errorMsg("未知错误");
     }
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
     JSONResult handleBusinessException(BusinessException e){
         logger.error(e.getMessage());
-        return new JSONResult(null,"",e.getMessage());
+        return JSONResult.errorException(e.getMessage());
     }
 }

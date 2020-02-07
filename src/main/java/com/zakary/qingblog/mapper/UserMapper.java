@@ -57,7 +57,7 @@ public interface UserMapper {
      *@Author: Zakary
      *@date: 2020/2/5 13:08
     */
-    User selectByUsername(String user_name);
+    User selectByUserMail(String userMail);
     /**
      *@description: 查询该用户名的用户记录个数
      *@param:  * @param null
@@ -65,5 +65,7 @@ public interface UserMapper {
      *@Author: Zakary
      *@date: 2020/2/5 13:10
     */
-    int selectCountByUsername(String user_name);
+    int selectCountByUserMail(String userMail);
+
+    int selectAllCount();
 }
