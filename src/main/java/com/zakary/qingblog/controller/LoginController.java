@@ -3,9 +3,11 @@ package com.zakary.qingblog.controller;
 import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.service.LoginService;
 import com.zakary.qingblog.utils.JSONResult;
+import com.zakary.qingblog.validation.ValidationGroups;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +42,7 @@ public class LoginController {
     */
     @RequestMapping("/userLogin")
     @ResponseBody
-    public JSONResult userLogin(@RequestBody User user, HttpServletRequest request){
+    public JSONResult userLogin(@RequestBody @Validated({ValidationGroups.LoginGroup.class}) User user, HttpServletRequest request){
 //        logger.info("user: "+user.getUserMail());
         User user1=loginService.login(user);
         HttpSession session=request.getSession();
@@ -51,7 +53,7 @@ public class LoginController {
     //返回信息包括分配的次用户ID
     @RequestMapping("/userRegister")
     @ResponseBody
-    public JSONResult userRegister(@RequestBody User user){
+    public JSONResult userRegister(@RequestBody @Validated({ValidationGroups.ResignGroup.class}) User user){
         User user1=loginService.register(user);
         return JSONResult.ok(user1.getUserId());
     }

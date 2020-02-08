@@ -31,9 +31,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User login(User user) {
-        if (Pattern.matches(reMail, user.getUserMail()) || user.getUserPassword().length() < 8 || user.getUserPassword().length() > 16) {
-            throw new BusinessException("输入格式错误！");
-        }
         int count = userMapper.selectCountByUserMail(user.getUserMail());
         if (count == 0) {
             throw new BusinessException("该用户不存在！");
@@ -47,9 +44,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User register(User user) {
-        if (Pattern.matches(reMail, user.getUserMail()) || user.getUserPassword().length() < 8 || user.getUserPassword().length() > 16 || user.getUserName().length() < 4 || user.getUserName().length() > 8 || user.getUserTel().length() < 8 || user.getUserTel().length() > 11) {
-            throw new BusinessException("输入格式错误！");
-        }
         int count = userMapper.selectCountByUserMail(user.getUserMail());
         if (count != 0) {
             throw new BusinessException("该用户已存在！");

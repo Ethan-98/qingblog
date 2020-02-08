@@ -1,8 +1,12 @@
 package com.zakary.qingblog.domain;
 
+import com.zakary.qingblog.validation.ValidationGroups;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,6 +28,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(groups = ValidationGroups.ResignGroup.class,message = "用户名不能为空")
     private String userName;
 
     /**
@@ -34,6 +39,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(groups = ValidationGroups.DefaultGroup.class,message = "密码不能为空")
     private String userPassword;
 
     /**
@@ -43,6 +49,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
+    @NotBlank(groups = ValidationGroups.ResignGroup.class,message = "号码不能为空")
     private String userTel;
 
     /**
@@ -52,6 +59,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
+    @Pattern(regexp = "/([a-z]|\\d)+\\@([a-z]|\\d)+\\.([a-z]|\\d)+/i",groups = ValidationGroups.DefaultGroup.class,message = "邮箱格式不正确")
     private String userMail;
 
     /**
@@ -79,6 +87,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
+    @NotNull(groups = ValidationGroups.ResignGroup.class,message = "用户状态不能为空")
     private int userState;
 
     /**

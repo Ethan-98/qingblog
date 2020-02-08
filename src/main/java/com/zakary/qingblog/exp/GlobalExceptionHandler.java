@@ -3,9 +3,14 @@ package com.zakary.qingblog.exp;
 import com.zakary.qingblog.utils.JSONResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -30,5 +35,16 @@ public class GlobalExceptionHandler {
     JSONResult handleBusinessException(BusinessException e){
         logger.error(e.getMessage());
         return JSONResult.errorException(e.getMessage());
+    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    JSONResult handleValidException(MethodArgumentNotValidException e){
+        StringBuffer sb = new StringBuffer();
+        List<String> messages = new ArrayList<>();
+        for(FieldError fieldError:e.getBindingResult().getFieldErrors()){
+            messages.add(fieldError.getDefaultMessage());
+        }
+        logger.error(e.getLocalizedMessage());
+        return JSONResult.errorMsg(String.join("|",messages));
     }
 }

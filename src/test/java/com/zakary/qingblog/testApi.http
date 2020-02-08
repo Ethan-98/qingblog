@@ -1,0 +1,10 @@
+### Send POST request with json body
+POST http://localhost:8080/qingblog/userLogin
+Content-Type: application/json
+
+{
+  "userMail": 999,
+  "userPassword": "content"
+}
+
+###
