@@ -26,7 +26,7 @@ class QingblogApplicationTests {
     @Test
     public void loginTest1(){
         User user=new User();
-        user.setUserName("test");
+        user.setUserMail("xxx@gmail.com");
         user.setUserPassword("12345678");
         loginService.login(user);
     }

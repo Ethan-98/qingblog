@@ -45,7 +45,7 @@ public class LoginController {
         User user1=loginService.login(user);
         HttpSession session=request.getSession();
         session.setAttribute("userId",user1.getUserId());
-        return new JSONResult("success");
+        return JSONResult.ok("success");
     }
 
     //返回信息包括分配的次用户ID
