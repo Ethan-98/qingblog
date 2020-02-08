@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     JSONResult handleValidException(MethodArgumentNotValidException e){
-        StringBuffer sb = new StringBuffer();
         List<String> messages = new ArrayList<>();
         for(FieldError fieldError:e.getBindingResult().getFieldErrors()){
             messages.add(fieldError.getDefaultMessage());
