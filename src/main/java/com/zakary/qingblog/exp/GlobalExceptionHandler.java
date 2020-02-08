@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,24 +20,21 @@ import java.util.List;
  * @Date2020/2/5 12:09
  * @Version V1.0
  **/
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @ExceptionHandler
-    @ResponseBody
     JSONResult handleException(Exception e){
         logger.error(e.getMessage());
         e.printStackTrace();
         return JSONResult.errorMsg("未知错误");
     }
     @ExceptionHandler(BusinessException.class)
-    @ResponseBody
     JSONResult handleBusinessException(BusinessException e){
         logger.error(e.getMessage());
         return JSONResult.errorException(e.getMessage());
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseBody
     JSONResult handleValidException(MethodArgumentNotValidException e){
         StringBuffer sb = new StringBuffer();
         List<String> messages = new ArrayList<>();
@@ -45,6 +42,6 @@ public class GlobalExceptionHandler {
             messages.add(fieldError.getDefaultMessage());
         }
         logger.error(e.getLocalizedMessage());
-        return JSONResult.errorMsg(String.join("|",messages));
+        return JSONResult.errorException(String.join("|",messages));
     }
 }

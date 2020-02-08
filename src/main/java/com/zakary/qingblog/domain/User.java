@@ -1,7 +1,6 @@
 package com.zakary.qingblog.domain;
 
 import com.zakary.qingblog.validation.ValidationGroups;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotBlank;
@@ -59,7 +58,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
-    @Pattern(regexp = "/([a-z]|\\d)+\\@([a-z]|\\d)+\\.([a-z]|\\d)+/i",groups = ValidationGroups.DefaultGroup.class,message = "邮箱格式不正确")
+    @Pattern(regexp = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$",groups = ValidationGroups.DefaultGroup.class,message = "邮箱格式不正确")
     private String userMail;
 
     /**
