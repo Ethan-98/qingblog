@@ -46,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
             throw new BusinessException("该用户已存在！");
         }
         //1为test
-        user.setUserId(userMapper.selectAllCount()+10001);
+//        user.setUserId(userMapper.selectAllCount()+10001);
         user.setUserRegisterDate(new Date());
         user.setUserState(0);
         userMapper.insert(user);
