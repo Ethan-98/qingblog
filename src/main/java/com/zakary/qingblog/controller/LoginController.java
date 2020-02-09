@@ -28,6 +28,8 @@ public class LoginController {
         return "userLogin";
     }
 
+    @RequestMapping("/test")
+    public String file(){ return "test"; }
     @RequestMapping("/homePage")
     public String homePage(){ return "homePage"; }
 

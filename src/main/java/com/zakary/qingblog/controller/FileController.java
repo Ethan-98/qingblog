@@ -38,7 +38,7 @@ public class FileController {
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         logger.info("上传的后缀名为：" + suffixName);
         // 文件上传后的路径
-        String filePath = "/profileImg/";
+        String filePath = "D:\\OneDrive\\Code\\IDEA\\qingblog\\src\\main\\resources\\static\\image\\profileImg\\";
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
