@@ -9,8 +9,8 @@ import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.service.LoginService;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.IOUtils;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -75,7 +75,7 @@ class QingblogApplicationTests {
         GridFSDownloadStream gridFSDownloadStream = gridFSBucket.openDownloadStream(gridFSFile.getObjectId());
         GridFsResource gridFsResource = new GridFsResource(gridFSFile,gridFSDownloadStream);
         File file = new File("D:\\temp.jpg");
-        FileUtils.copyInputStreamToFile(gridFsResource.getInputStream(),file);
+//        FileUtils.copyInputStreamToFile(gridFsResource.getInputStream(),file);
     }
     @Test
     public void delFile(){
