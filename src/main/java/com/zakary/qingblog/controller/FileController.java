@@ -37,7 +37,7 @@ public class FileController {
 
     @RequestMapping("/upLoadFile")
     @ResponseBody
-    public FileInfo upLoadFile(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file){
+    public FileInfo upLoadFile(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file) throws IOException {
         logger.info("【FileController】 fileName={},fileOrginNmae={},fileSize={}", file.getName(), file.getOriginalFilename(), file.getSize());
         logger.info(request.getContextPath());
         String fileName = file.getOriginalFilename();
