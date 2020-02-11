@@ -55,4 +55,31 @@ public class LoginServiceImpl implements LoginService {
         userMapper.insert(user);
         return userMapper.selectByUserMail(user.getUserMail());
     }
+
+    @Override
+    public User updateInfo(User user){
+        User user1=userMapper.selectByPrimaryKey(user.getUserId());
+        user.setUserPassword(user1.getUserPassword());
+        user.setUserRegisterDate(user1.getUserRegisterDate());
+        user.setUserImage(user1.getUserImage());
+        user.setUserState(user1.getUserState());
+        userMapper.updateByPrimaryKey(user);
+        return selectExceptPwd(user);
+    }
+
+    @Override
+    public User updatePwd(User user){
+        User user1=userMapper.selectByPrimaryKey(user.getUserId());
+        user1.setUserPassword(user.getUserPassword());
+        userMapper.updateByPrimaryKey(user1);
+        return selectExceptPwd(user);
+    }
+
+    @Override
+    public User selectExceptPwd(User user){
+        User user1=userMapper.selectByPrimaryKey(user.getUserId());
+        user1.setUserPassword(null);
+        return user1;
+    }
+
 }

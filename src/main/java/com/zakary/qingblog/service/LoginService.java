@@ -7,4 +7,7 @@ import org.springframework.stereotype.Service;
 public interface LoginService {
     public User login(User user);
     public User register(User user);
+    public User updateInfo(User user);
+    public User updatePwd(User user);
+    public User selectExceptPwd(User user);
 }

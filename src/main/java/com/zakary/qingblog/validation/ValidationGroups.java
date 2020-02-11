@@ -7,10 +7,12 @@ package com.zakary.qingblog.validation;
  * version: 1.0 <br>
  */
 public abstract class ValidationGroups {
-    //包含user类中userMail,userPassword
+    //包含user类中userPassword
     public interface DefaultGroup{}
-    //同DefaultGroup
+    //useremail,userpawwword，username,usertel
     public interface ResignGroup extends DefaultGroup{}
-    //包含user类中userTel,userName,userState
+    //useremail,userpawwword
     public interface LoginGroup extends DefaultGroup{}
+    //username usermail,usertel
+    public interface UpdateGroup extends DefaultGroup{}
 }

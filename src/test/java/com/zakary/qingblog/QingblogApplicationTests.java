@@ -62,7 +62,7 @@ class QingblogApplicationTests {
     }
     @Test
     public void addFile() throws FileNotFoundException {
-        File file = new File("D:\\main_bk.jpg");
+        File file = new File("D:\\OneDrive\\Code\\IDEA\\qingblog\\src\\main\\resources\\static\\image\\profileImg\\test.jpg");
         String fileName = String.valueOf(System.currentTimeMillis());
         ObjectId objectId = gridFsTemplate.store(new FileInputStream(file),fileName,"image");
         String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里

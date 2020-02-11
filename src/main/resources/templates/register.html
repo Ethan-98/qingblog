@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>登录</title>
     <script src="js/jquery-3.4.1.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.js"></script>
+    <script src="js/popper.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/bootstrap.js"></script>
     <script src="js/other/register.js"></script>
     <link rel="stylesheet" href="css/font-awesome.css">
 </head>
 <style>
-    #info{
+    #info {
         width: 100%;
         position: absolute;
         top: 50%;
@@ -52,7 +52,8 @@
                         <div class="from-group">
                             <label for="password">密码:</label>
                             <div class="input-group" id="password">
-                                <input id="state" type="password" class="form-control rounded-0" placeholder="Enter password">
+                                <input id="state" type="password" class="form-control rounded-0"
+                                       placeholder="Enter password">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" onclick="changeState()">
                                         <span class="button" id="visibleButton">
@@ -71,25 +72,25 @@
                             <input type="email" class="form-control rounded-0" id="email" placeholder="Enter email">
                         </div>
 
-<!--                        单个文件上传-->
-<!--                        <div class="from-group">-->
-<!--                            <label for="profileImg">头像:</label>-->
-<!--                            <div class="input-group" id="profileImg">-->
-<!--                                <input id="imgButton" class="form-control rounded-0" placeholder="Choose File" onclick="$('#img').click()">-->
-<!--                                <div class="input-group-prepend">-->
-<!--                                    <span class="input-group-text">-->
-<!--                                        <span class="button" onclick="$('#img').click()">-->
-<!--                                            <i class="fa fa-file" aria-hidden="true"></i>-->
-<!--                                        </span>-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <input class="input-group-prepend" type="file" name="file" id='img'  accept=".png,.jpg" onchange="$('#imgButton').val($('#img').val());" style="display: none">-->
-<!--                        </div>-->
+                        <!--                        单个文件上传-->
+                        <!--                        <div class="from-group">-->
+                        <!--                            <label for="profileImg">头像:</label>-->
+                        <!--                            <div class="input-group" id="profileImg">-->
+                        <!--                                <input id="imgButton" class="form-control rounded-0" placeholder="Choose File" onclick="$('#img').click()">-->
+                        <!--                                <div class="input-group-prepend">-->
+                        <!--                                    <span class="input-group-text">-->
+                        <!--                                        <span class="button" onclick="$('#img').click()">-->
+                        <!--                                            <i class="fa fa-file" aria-hidden="true"></i>-->
+                        <!--                                        </span>-->
+                        <!--                                    </span>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                            <input class="input-group-prepend" type="file" name="file" id='img'  accept=".png,.jpg" onchange="$('#imgButton').val($('#img').val());" style="display: none">-->
+                        <!--                        </div>-->
                         <div class="from-group">
-                            <div  id="loginButton" class="form-group" style="margin-top: 8%">
-                            <button type="button" class="btn btn-primary btn-block" onclick="register()">注册</button>
-                        </div>
+                            <div id="loginButton" class="form-group" style="margin-top: 8%">
+                                <button type="button" class="btn btn-primary btn-block" onclick="register()">注册</button>
+                            </div>
                         </div>
                     </from>
                 </div>
