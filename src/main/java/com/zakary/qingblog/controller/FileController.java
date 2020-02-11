@@ -35,6 +35,9 @@ public class FileController {
 
     Logger logger = LoggerFactory.getLogger(FileController.class);
 
+
+
+
     @RequestMapping("/upLoadFile")
     @ResponseBody
     public FileInfo upLoadFile(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file) throws IOException {
