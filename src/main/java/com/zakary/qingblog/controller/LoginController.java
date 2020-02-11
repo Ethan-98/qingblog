@@ -31,7 +31,7 @@ public class LoginController {
     @RequestMapping("/test")
     public String file(){ return "test"; }
     @RequestMapping("/homePage")
-    public String homePage(){ return "homePage"; }
+    public String homePage(){ return "blogEdit"; }
 
     @RequestMapping("/register")
     public String register(){ return "register"; }
@@ -58,5 +58,42 @@ public class LoginController {
     public JSONResult userRegister(@RequestBody @Validated({ValidationGroups.ResignGroup.class}) User user){
         User user1=loginService.register(user);
         return JSONResult.ok(user1.getUserId());
+    }
+    /**
+     *@description: 用户更新个人信息，必须是登陆状态，不能修改密码
+     *@param:  * @param userId,userName,userMail,userTel
+     *@return: 用户全部信息
+     *@Author: Zakary
+     *@date: 2020/2/9 18:51
+    */
+    @RequestMapping("/userUpdateInfo")
+    @ResponseBody
+    public User userUpdateInfo(@RequestBody User user){
+        return loginService.updateInfo(user);
+    }
+
+    /**
+     *@description: 用户更新密码
+     *@param:  * @param userId，userPassword
+     *@return:
+     *@Author: Zakary
+     *@date: 2020/2/9 18:51
+     */
+    @RequestMapping("/userUpdatePwd")
+    @ResponseBody
+    public User userUpdatePwd(@RequestBody User user){
+        return loginService.updatePwd(user);
+    }
+    /**
+     *@description: 查询用户所有信息
+     *@param:  * @param UserId
+     *@return:
+     *@Author: Zakary
+     *@date: 2020/2/9 19:19
+    */
+    @RequestMapping("/selectInfo")
+    @ResponseBody
+    public User selectInfo(@RequestBody User user){
+        return loginService.selectExceptPwd(user);
     }
 }

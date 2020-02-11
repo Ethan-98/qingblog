@@ -27,7 +27,13 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-
+  data:
+    mongodb:
+      host: 106.15.250.95
+      database: qingblog
+      authentication-database: qingblog
+      password: 1qazXSW!
+      username: root
 mybatis:
   mapper-locations: classpath*:com/zakary/qingblog/mapper/xml/*.xml
   configuration:

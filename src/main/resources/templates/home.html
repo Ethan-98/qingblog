@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>首页</title>
+    <script src="../static/js/jquery-3.4.1.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../static/css/font-awesome.css">
+</head>
+<style>
+    .dropdown-toggle::after {
+        display: none;
+    }
+</style>
+<body style="background-image: url('../static/image/main_bk.jpg');background-size: 100% ">
+<header style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+    <nav class="navbar navbar-light bg-light" style="margin-top: 0;margin-bottom: 0;padding-right: 0px">
+        <div class="row" style="width: 100%">
+            <div class="col-2">
+                <a class="navbar-brand" href="#">
+                    <img src="../static/image/title.png" width="30px" height="30px" class="d-inline-block align-top"
+                         alt="">
+                    Ethan's Blog
+                </a>
+            </div>
+
+            <div class="col-3 text-right">
+                <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+            </div>
+            <div class="col-7 text-right">
+                <div class="row">
+                    <div class="col-2">
+                        <button class="btn btn-outline-secondary border-0" type="button">热点</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-outline-secondary border-0" type="button">收藏</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-outline-secondary border-0" type="button">消息</button>
+                    </div>
+                    <div class="col-6" style="width: 100%">
+                        <div class="nav-item dropdown custom-control-inline">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                我的
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">个人中心</a>
+                                <a class="dropdown-item" href="#">我的创作</a>
+                                <a class="dropdown-item" href="#">信息更改</a>
+                            </div>
+                        </div>
+                        <span>username</span>
+                        <img src="../static/image/default.png" class="rounded-circle"
+                             style="height:40px;width:40px;margin-left: 2%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+<div class="container-fluid" style="padding-top: 1%">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-6">
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color: rgba(255,255,255,0.6);box-shadow: 2px 2px 10px #e2e2e2;">
+                <div class="col-4" style="margin-top: 2%;margin-bottom:2%;">
+                    <img class="rounded" src="../static/image/profileImg/test.jpg"
+                         style="height: 180px;width:180px;position: relative;top: 50%;transform: translateY(-50%)">
+                </div>
+                <div class="col-8">
+                    <div class="row" style="margin-top: 6%;">
+                        文章标题
+                    </div>
+                    <div class="row" style="margin-top: 4%">
+                        <div class="col-3">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>ETHAN</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>2020-1-1</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="col-3">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>1000</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4%;">
+                        DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-2">
+            <div class="row" style="height:45%"></div>
+            <div class="row offset-2">
+                <div class="dropdown shadow">
+                    <button style="background-image: url('../static/image/plus.png');background-size: 100%;height: 50px;width: 50px;"; class="btn btn-success dropdown-toggle rounded-circle" type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!--                        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>-->
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
+</div>
+</body>
+</html>

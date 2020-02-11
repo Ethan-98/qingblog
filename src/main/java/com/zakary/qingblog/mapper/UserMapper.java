@@ -68,4 +68,6 @@ public interface UserMapper {
     int selectCountByUserMail(String userMail);
 
     int selectAllCount();
+
+
 }
