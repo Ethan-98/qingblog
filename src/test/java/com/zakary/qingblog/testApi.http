@@ -1,11 +1,11 @@
 ### Send POST request with json body
-POST http://localhost:8080/qingblog/userRegister
+POST http://localhost:8081/qingblog/userRegister
 Content-Type: application/json
 
 {
   "userMail": "xxx@qq.com",
   "userPassword": "123456789",
-  "userTel": "11111111111",
+  "userTel": "",
   "userState": "0",
   "userName": "test6"
 }
