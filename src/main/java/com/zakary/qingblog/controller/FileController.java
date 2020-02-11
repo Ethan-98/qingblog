@@ -35,6 +35,9 @@ public class FileController {
 
     Logger logger = LoggerFactory.getLogger(FileController.class);
 
+
+
+
     @RequestMapping("/upLoadFile")
     @ResponseBody
     public FileInfo upLoadFile(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file) throws IOException {
@@ -47,6 +50,7 @@ public class FileController {
         File localFile = new File("D:\\OneDrive\\Code\\IDEA\\qingblog\\src\\main\\resources\\static\\image\\profileImg", newFileName);
         file.transferTo(localFile);
         logger.info(localFile.getAbsolutePath());
-        return new FileInfo(1, "上传成功", request.getRequestURL().substring(0,request.getRequestURL().lastIndexOf(\"/\"))+\"/upload/\"+newFileName);
+        return null;
+//        return new FileInfo(1, "上传成功", request.getRequestURL().substring(0,request.getRequestURL().lastIndexOf("/"))+"/upload/"+newFileName);
     }
 }
