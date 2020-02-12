@@ -26,7 +26,7 @@ $(function () {
         var markdown = editor.getMarkdown();
         $.ajax({
             url: '/qingblog/upLoadMarkdown',
-            data: {'title': 'title', 'text': btoa(encodeURI(markdown))},
+            data: {'blogTitle': 'title', 'blogContent': btoa(encodeURI(markdown))},
             contentType: "application/json",
             dataType: 'json',
             type: 'post'
