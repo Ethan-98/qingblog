@@ -31,8 +31,7 @@ public class LoginController {
 
     @RequestMapping("/test")
     public String file(){ return "test"; }
-    @RequestMapping("/homePage")
-    public String homePage(){ return "blogEdit"; }
+
 
     @RequestMapping("/register")
     public String register(){ return "register"; }

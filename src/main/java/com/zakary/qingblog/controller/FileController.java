@@ -16,10 +16,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,14 +47,14 @@ public class FileController {
     private GridFSBucket gridFSBucket;
 
 
-    @RequestMapping("/upLoadFile")
+    @RequestMapping("/upLoadImg")
     @ResponseBody
-    public Map upLoadFile(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file) throws IOException {
+    public Map upLoadImg(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file) throws IOException {
         logger.info("【FileController】 fileName={},fileOrginNmae={},fileSize={}", file.getName(), file.getOriginalFilename(), file.getSize());
         logger.info(request.getContextPath());
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
-        String newFileName = System.currentTimeMillis() + "." + suffix;
+        String newFileName = System.currentTimeMillis()+request.getSession().getAttribute("userId").toString() + "." + suffix;
 
 //        File localFile = new File(newFileName);
 //        file.transferTo(localFile);
@@ -74,8 +71,9 @@ public class FileController {
 
 
     @RequestMapping(value = "/img",method = RequestMethod.GET)
-    public void getImg(HttpServletResponse response, @NotNull String id) throws IOException{
-        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query((Criteria.where("_id").is(id))));
+    public void getImg(HttpServletRequest request,HttpServletResponse response, @NotNull String id) throws IOException{
+        Criteria criteria=new Criteria();
+        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(criteria.andOperator(Criteria.where("_id").is(id),Criteria.where("filename").regex("^.*"+request.getSession().getAttribute("userId").toString()+".*$"))));
         GridFSDownloadStream gridFSDownloadStream=gridFSBucket.openDownloadStream(gridFSFile.getObjectId());
         GridFsResource gridFsResource=new GridFsResource(gridFSFile,gridFSDownloadStream);
         OutputStream outputStream=response.getOutputStream();
@@ -87,4 +85,5 @@ public class FileController {
             outputStream.flush();
         }
     }
+
 }
