@@ -62,8 +62,8 @@ class QingblogApplicationTests {
     }
     @Test
     public void addFile() throws FileNotFoundException {
-        File file = new File("D:\\OneDrive\\Code\\IDEA\\qingblog\\src\\main\\resources\\static\\image\\profileImg\\test.jpg");
-        String fileName = String.valueOf(System.currentTimeMillis());
+        File file = new File("D:\\bg.jpg");
+        String fileName = "1245678987654334567-10003.jpg";
         ObjectId objectId = gridFsTemplate.store(new FileInputStream(file),fileName,"image");
         String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
         System.out.println(id);
@@ -79,6 +79,6 @@ class QingblogApplicationTests {
     }
     @Test
     public void delFile(){
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e3f9d5f5f7ca45b15b68324")));
+        gridFsTemplate.delete(Query.query(Criteria.where("_id").ne(null)));
     }
 }

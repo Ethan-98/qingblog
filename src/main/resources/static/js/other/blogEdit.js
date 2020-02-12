@@ -10,7 +10,7 @@ $(function() {
         imageUpload       : true,
         imageFormats      : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL    : "/qingblog/upLoadFile",
-        crossDomainUpload : true,
+        // crossDomainUpload : true,
         uploadCallbackURL : "",
         onload : function() {
             console.log('onload', this);
