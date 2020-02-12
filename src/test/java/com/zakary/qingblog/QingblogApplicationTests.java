@@ -8,6 +8,7 @@ import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.zakary.qingblog.domain.User;
+import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.service.LoginService;
 //import org.apache.commons.io.FileUtils;
 //import org.apache.commons.io.IOUtils;
@@ -40,6 +41,8 @@ class QingblogApplicationTests {
     private GridFsTemplate gridFsTemplate;
     @Autowired
     private GridFSBucket gridFSBucket;
+    @Autowired
+    private BlogService blogService;
 
     private Logger logger= LoggerFactory.getLogger(QingblogApplication.class);
     @Test
@@ -103,6 +106,12 @@ class QingblogApplicationTests {
         GridFSDownloadStream gridFSDownloadStream = gridFSBucket.openDownloadStream(gridFSFile.getObjectId());
         GridFsResource resource = new GridFsResource(gridFSFile, gridFSDownloadStream);
 
+    }
+
+    @Test
+    public void addBlog(){
+        int userId=1;
+        blogService.addBlog(userId,"title","textfytghjklkjhygutfr");
     }
 
 }
