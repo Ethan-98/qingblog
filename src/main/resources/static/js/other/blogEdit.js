@@ -13,8 +13,8 @@ $(function() {
         // crossDomainUpload : true,
         uploadCallbackURL : "",
         onload : function() {
-            console.log('onload', this);
-        },
+            // console.log('onload', this.data);
+        }
     });
 });
 

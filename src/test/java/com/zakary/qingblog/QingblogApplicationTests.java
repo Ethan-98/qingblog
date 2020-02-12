@@ -11,10 +11,12 @@ import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.service.LoginService;
 //import org.apache.commons.io.FileUtils;
 //import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -25,6 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.*;
+import java.net.URLEncoder;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -38,7 +41,7 @@ class QingblogApplicationTests {
     @Autowired
     private GridFSBucket gridFSBucket;
 
-    private Logger logger;
+    private Logger logger= LoggerFactory.getLogger(QingblogApplication.class);
     @Test
     public void contextLoads() {
     }
@@ -62,8 +65,8 @@ class QingblogApplicationTests {
     }
     @Test
     public void addFile() throws FileNotFoundException {
-        File file = new File("D:\\bg.jpg");
-        String fileName = "1245678987654334567-10003.jpg";
+        File file = new File("D:/OneDrive/Code/IDEA/qingblog/src/main/resources/static/image/profileImg/test.jpg");
+        String fileName = String.valueOf(System.currentTimeMillis());
         ObjectId objectId = gridFsTemplate.store(new FileInputStream(file),fileName,"image");
         String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
         System.out.println(id);
@@ -79,6 +82,27 @@ class QingblogApplicationTests {
     }
     @Test
     public void delFile(){
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").ne(null)));
+        gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e3f9d5f5f7ca45b15b68324")));
     }
+
+    @Test
+    public void download(){
+        logger.info("准备下载文件....");
+        Query query = Query.query(Criteria.where("_id").is("5e428efba367144a1c0276be"));
+        // 查询单个文件
+        GridFSFile gridFSFile = gridFsTemplate.findOne(query);
+        if (gridFSFile == null) {
+            return;
+        }
+
+        String fileName = gridFSFile.getFilename().replace(",", "");
+        String contentType = gridFSFile.getMetadata().get("_contentType").toString();
+
+        // 通知浏览器进行文件下载
+
+        GridFSDownloadStream gridFSDownloadStream = gridFSBucket.openDownloadStream(gridFSFile.getObjectId());
+        GridFsResource resource = new GridFsResource(gridFSFile, gridFSDownloadStream);
+
+    }
+
 }
