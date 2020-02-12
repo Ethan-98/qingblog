@@ -54,7 +54,7 @@ public class FileController {
         logger.info(request.getContextPath());
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
-        String newFileName = System.currentTimeMillis()+request.getSession().getAttribute("userId").toString() + "." + suffix;
+//        String newFileName = System.currentTimeMillis()+request.getSession().getAttribute("userId").toString() + "." + suffix;
 
 //        File localFile = new File(newFileName);
 //        file.transferTo(localFile);
@@ -65,7 +65,7 @@ public class FileController {
         Map<String,Object> map=new HashMap<>();
         map.put("success",1);
         map.put("message","success");
-        map.put("url","http://localhost:8080/qingblog/img?id="+id);
+        map.put("url","/qingblog/img?id="+id);
         return map;
     }
 
@@ -73,7 +73,9 @@ public class FileController {
     @RequestMapping(value = "/img",method = RequestMethod.GET)
     public void getImg(HttpServletRequest request,HttpServletResponse response, @NotNull String id) throws IOException{
         Criteria criteria=new Criteria();
-        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(criteria.andOperator(Criteria.where("_id").is(id),Criteria.where("filename").regex("^.*"+request.getSession().getAttribute("userId").toString()+".*$"))));
+//        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(criteria.andOperator(Criteria.where("_id").is(id),Criteria.where("filename").regex("^.*"+request.getSession().getAttribute("userId").toString()+".*$"))));
+        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
+
         GridFSDownloadStream gridFSDownloadStream=gridFSBucket.openDownloadStream(gridFSFile.getObjectId());
         GridFsResource gridFsResource=new GridFsResource(gridFSFile,gridFSDownloadStream);
         OutputStream outputStream=response.getOutputStream();

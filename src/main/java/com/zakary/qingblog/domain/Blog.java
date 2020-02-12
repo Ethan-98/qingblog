@@ -209,6 +209,9 @@ public class Blog implements Serializable {
      *
      * @mbg.generated
      */
+    public void setBlogContent(String blogContent) {
+        this.blogContent = blogContent.getBytes();
+    }
     public void setBlogContent(byte[] blogContent) {
         this.blogContent = blogContent;
     }

@@ -1,5 +1,7 @@
 package com.zakary.qingblog.service;
 
+import com.zakary.qingblog.domain.Blog;
+
 /**
  * @ClassNameBlogService
  * @Description
@@ -8,5 +10,5 @@ package com.zakary.qingblog.service;
  * @Version V1.0
  **/
 public interface BlogService {
-    public void addBlog(int userId,String title,String text);
+    public void addBlog(Blog blog);
 }

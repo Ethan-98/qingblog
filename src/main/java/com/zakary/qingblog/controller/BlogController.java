@@ -1,5 +1,6 @@
 package com.zakary.qingblog.controller;
 
+import com.zakary.qingblog.domain.Blog;
 import com.zakary.qingblog.mapper.BlogMapper;
 import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.utils.JSONResult;
@@ -31,9 +32,11 @@ public class BlogController {
 
     @RequestMapping(value = "/upLoadMarkdown",method = RequestMethod.POST)
     @ResponseBody
-    public JSONResult upLoadMarkdown(HttpServletRequest request, @RequestParam String title,@RequestParam String text){
-        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
-        blogService.addBlog(userId,title,text);
+    public JSONResult upLoadMarkdown(HttpServletRequest request, @RequestBody Blog blog){
+        String id = request.getSession().getAttribute("userId").toString();
+        int userId=Integer.parseInt(id);
+        blog.setUserId(userId);
+        blogService.addBlog(blog);
         return JSONResult.ok();
     }
 }

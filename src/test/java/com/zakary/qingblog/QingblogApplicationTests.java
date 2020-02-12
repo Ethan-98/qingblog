@@ -7,6 +7,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.zakary.qingblog.domain.Blog;
 import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.service.LoginService;
@@ -85,7 +86,7 @@ class QingblogApplicationTests {
     }
     @Test
     public void delFile(){
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").is("5e3f9d5f5f7ca45b15b68324")));
+        gridFsTemplate.delete(Query.query(Criteria.where("_id").ne(null)));
     }
 
     @Test
@@ -111,7 +112,7 @@ class QingblogApplicationTests {
     @Test
     public void addBlog(){
         int userId=1;
-        blogService.addBlog(userId,"title","textfytghjklkjhygutfr");
+        blogService.addBlog(new Blog());
     }
 
 }

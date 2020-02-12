@@ -13,8 +13,12 @@ $(function () {
         imageUploadURL: "/qingblog/upLoadImg",
         // crossDomainUpload : true,
         uploadCallbackURL: "",
-        onload: function () {
-            // console.log('onload', this.data);
+        onchange:function () {
+            // let dom = document.createElement("div");
+            // dom.innerHTML = ;
+            $('<div>'+editor.getHTML()+'</div>').find('img').each(function (index, element) {
+                console.log(index+":"+element)
+            })
         }
     });
 
