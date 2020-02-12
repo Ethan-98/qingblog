@@ -9,10 +9,12 @@ import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.zakary.qingblog.domain.Blog;
 import com.zakary.qingblog.domain.User;
+import com.zakary.qingblog.exp.BusinessException;
 import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.service.LoginService;
 //import org.apache.commons.io.FileUtils;
 //import org.apache.commons.io.IOUtils;
+import com.zakary.qingblog.utils.JSONResult;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
@@ -113,6 +115,16 @@ class QingblogApplicationTests {
     public void addBlog(){
         int userId=1;
         blogService.addBlog(new Blog());
+    }
+
+    @Test
+    public void delImg(){
+        String id="5e43c5a64f0fa35869b29c60";
+        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
+        if(gridFSFile==null) {
+            throw new BusinessException("文件不存在");
+        }
+        gridFsTemplate.delete(Query.query(Criteria.where("_id").is(id)));
     }
 
 }

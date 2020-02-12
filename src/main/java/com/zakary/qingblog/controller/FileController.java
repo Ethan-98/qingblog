@@ -4,7 +4,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.zakary.qingblog.exp.BusinessException;
 import com.zakary.qingblog.utils.JSONResult;
+import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.jni.FileInfo;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.bson.types.ObjectId;
@@ -86,6 +88,22 @@ public class FileController {
             outputStream.write(buffer,0,count);
             outputStream.flush();
         }
+    }
+    /**
+     *@description: 删除图片
+     *@param:  * @param objectID
+     *@return: 删除信息，需要知道文件是否存在所以需要返回值
+     *@Author: Zakary
+     *@date: 2020/2/12 19:30
+    */
+    @RequestMapping(value = "/delImg",method = RequestMethod.GET)
+    public JSONResult delImg(@RequestParam String id){
+        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
+        if(gridFSFile==null) {
+            return JSONResult.errorMsg("文件不存在");
+        }
+        gridFsTemplate.delete(Query.query(Criteria.where("_id").is(id)));
+        return JSONResult.ok();
     }
 
 }
