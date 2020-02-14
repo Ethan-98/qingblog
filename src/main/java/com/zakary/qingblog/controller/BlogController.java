@@ -51,4 +51,12 @@ public class BlogController {
         }
         return JSONResult.ok();
     }
+
+    @RequestMapping(value = "/alterBlog",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONResult alterBlog(HttpServletRequest request,@RequestBody Blog blog){
+        blogService.updateBlog(blog);
+        //通过mapper中useGeneratedKeys="true" keyProperty="blogId"来设定返回blogid在javabean中，通过get（）得到
+        return JSONResult.ok(blog.getBlogId());
+    }
 }

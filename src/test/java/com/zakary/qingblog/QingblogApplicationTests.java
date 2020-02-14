@@ -145,4 +145,14 @@ class QingblogApplicationTests {
             fileController.delImg(img);
         }
     }
+
+    @Test
+    public void updateBlog(){
+        Blog blog=new Blog();
+        blog.setBlogId(8);
+        blog.setBlogTitle("testyyyyy");
+        blog.setBlogContent("TTTTTTTTTTTTTTTTTTTTT".getBytes());
+        blogService.updateBlog(blog);
+        System.out.println(blog.getBlogId());
+    }
 }

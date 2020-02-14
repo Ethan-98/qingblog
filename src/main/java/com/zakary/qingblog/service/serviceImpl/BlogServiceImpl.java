@@ -37,4 +37,10 @@ public class BlogServiceImpl implements BlogService {
     public int deleteBlog(int blogId){
         return blogMapper.deleteByPrimaryKey(blogId);
     }
+
+    @Override
+    public int updateBlog(Blog blog){
+        blog.setReleaseDate(new Date());
+        return blogMapper.updateByPrimaryKey(blog);
+    }
 }
