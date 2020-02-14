@@ -1,6 +1,7 @@
 package com.zakary.qingblog.service.serviceImpl;
 
 import com.zakary.qingblog.domain.Blog;
+import com.zakary.qingblog.exp.BusinessException;
 import com.zakary.qingblog.mapper.BlogMapper;
 import com.zakary.qingblog.mapper.UserMapper;
 import com.zakary.qingblog.service.BlogService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassNameBlogServiceImpl
@@ -42,5 +44,18 @@ public class BlogServiceImpl implements BlogService {
     public int updateBlog(Blog blog){
         blog.setReleaseDate(new Date());
         return blogMapper.updateByPrimaryKey(blog);
+    }
+
+    @Override
+    public Blog queryBlogInfo(int blogId){
+        if(blogMapper.selectByPrimaryKey(blogId)==null){
+            throw new BusinessException("博客不存在！");
+        }
+        return blogMapper.selectByPrimaryKey(blogId);
+    }
+
+    @Override
+    public List<Blog> queryBlogListIntro(int userId){
+        return blogMapper.selectBlogListByUserId(userId);
     }
 }

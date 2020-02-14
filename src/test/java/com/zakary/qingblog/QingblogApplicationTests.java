@@ -33,6 +33,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -154,5 +155,15 @@ class QingblogApplicationTests {
         blog.setBlogContent("TTTTTTTTTTTTTTTTTTTTT".getBytes());
         blogService.updateBlog(blog);
         System.out.println(blog.getBlogId());
+    }
+    @Test
+    public void viewBlog(){
+        System.out.println(blogService.queryBlogInfo(8));
+    }
+
+    @Test
+    public void viewBlogList(){
+        List<Blog> blogs=blogService.queryBlogListIntro(1);
+        System.out.println(blogs.size());
     }
 }

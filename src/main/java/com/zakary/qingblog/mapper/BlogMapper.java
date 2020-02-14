@@ -48,4 +48,6 @@ public interface BlogMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Blog record);
+
+    List<Blog> selectBlogListByUserId(int userId);
 }

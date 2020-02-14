@@ -2,6 +2,8 @@ package com.zakary.qingblog.service;
 
 import com.zakary.qingblog.domain.Blog;
 
+import java.util.List;
+
 /**
  * @ClassNameBlogService
  * @Description
@@ -13,4 +15,6 @@ public interface BlogService {
     public int addBlog(Blog blog);
     public int deleteBlog(int blogId);
     public int updateBlog(Blog blog);
+    public Blog queryBlogInfo(int blogId);
+    public List<Blog> queryBlogListIntro(int userId);
 }

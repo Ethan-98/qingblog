@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @ClassNameBlogController
@@ -59,4 +60,25 @@ public class BlogController {
         //通过mapper中useGeneratedKeys="true" keyProperty="blogId"来设定返回blogid在javabean中，通过get（）得到
         return JSONResult.ok(blog.getBlogId());
     }
+
+    @RequestMapping(value = "/viewBlog",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONResult queryBlogInfo(@RequestParam int blogId){
+        return JSONResult.ok(blogService.queryBlogInfo(blogId));
+    }
+    /**
+     *@description:
+     *@param:  * @param null
+     *@return: title blogId views date
+     *@Author: Zakary
+     *@date: 2020/2/14 14:32
+    */
+    @RequestMapping(value = "/viewBlogList",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONResult viewBlogList(HttpServletRequest request){
+        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
+        List<Blog> blogs=blogService.queryBlogListIntro(userId);
+        return JSONResult.ok(userId);
+    }
+
 }
