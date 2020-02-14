@@ -63,7 +63,7 @@
     from blog
   </select>
   <select id="selectBlogListByUserId" parameterType="java.lang.Integer" resultType="com.zakary.qingblog.domain.Blog">
-    select blog_id, user_id, release_date, blog_title, views
+    select blog_id, user_id, release_date, blog_title, views,blog_content
     from blog
     where user_id = #{userId,jdbcType=INTEGER}
   </select>

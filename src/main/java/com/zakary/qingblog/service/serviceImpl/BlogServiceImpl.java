@@ -58,4 +58,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> queryBlogListIntro(int userId){
         return blogMapper.selectBlogListByUserId(userId);
     }
+
+    @Override
+    public List<Blog> queryAllBlogListIntro(){
+        return blogMapper.selectAll();
+    }
 }

@@ -63,8 +63,8 @@ public class BlogController {
 
     @RequestMapping(value = "/viewBlog",method = RequestMethod.POST)
     @ResponseBody
-    public JSONResult queryBlogInfo(@RequestParam int blogId){
-        return JSONResult.ok(blogService.queryBlogInfo(blogId));
+    public JSONResult queryBlogInfo(@RequestParam String blogId){
+        return JSONResult.ok(blogService.queryBlogInfo(Integer.parseInt(blogId)));
     }
     /**
      *@description:
@@ -81,4 +81,10 @@ public class BlogController {
         return JSONResult.ok(blogs);
     }
 
+    @RequestMapping(value = "/viewAllBlogList",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONResult viewAllBlogList(HttpServletRequest request){
+        List<Blog> blogs=blogService.queryAllBlogListIntro();
+        return JSONResult.ok(blogs);
+    }
 }

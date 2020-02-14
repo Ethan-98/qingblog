@@ -17,4 +17,5 @@ public interface BlogService {
     public int updateBlog(Blog blog);
     public Blog queryBlogInfo(int blogId);
     public List<Blog> queryBlogListIntro(int userId);
+    public List<Blog> queryAllBlogListIntro();
 }
