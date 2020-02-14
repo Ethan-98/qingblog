@@ -10,5 +10,6 @@ import com.zakary.qingblog.domain.Blog;
  * @Version V1.0
  **/
 public interface BlogService {
-    public void addBlog(Blog blog);
+    public int addBlog(Blog blog);
+    public int deleteBlog(int blogId);
 }

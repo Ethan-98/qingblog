@@ -7,6 +7,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.zakary.qingblog.controller.FileController;
 import com.zakary.qingblog.domain.Blog;
 import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.exp.BusinessException;
@@ -46,6 +47,8 @@ class QingblogApplicationTests {
     private GridFSBucket gridFSBucket;
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private FileController fileController;
 
     private Logger logger= LoggerFactory.getLogger(QingblogApplication.class);
     @Test
@@ -114,7 +117,12 @@ class QingblogApplicationTests {
     @Test
     public void addBlog(){
         int userId=1;
-        blogService.addBlog(new Blog());
+        Blog blog=new Blog();
+        blog.setUserId(userId);
+        blog.setBlogTitle("rrrr");
+        blog.setBlogContent("pppppppppp");
+        int blogId=blogService.addBlog(blog);
+        System.out.println(blog.getBlogId());
     }
 
     @Test
@@ -127,4 +135,14 @@ class QingblogApplicationTests {
         gridFsTemplate.delete(Query.query(Criteria.where("_id").is(id)));
     }
 
+    @Test
+    public void delBlog(){
+        Blog blog=new Blog();
+        blog.setBlogId(9);
+        String imgs[]={"5e43db0db8babd2544f062a9"};
+        blogService.deleteBlog(blog.getBlogId());
+        for(String img:imgs){
+            fileController.delImg(img);
+        }
+    }
 }
