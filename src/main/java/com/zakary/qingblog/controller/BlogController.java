@@ -61,7 +61,7 @@ public class BlogController {
         return JSONResult.ok(blog.getBlogId());
     }
 
-    @RequestMapping(value = "/viewBlog",method = RequestMethod.GET)
+    @RequestMapping(value = "/viewBlog",method = RequestMethod.POST)
     @ResponseBody
     public JSONResult queryBlogInfo(@RequestParam int blogId){
         return JSONResult.ok(blogService.queryBlogInfo(blogId));
@@ -73,12 +73,12 @@ public class BlogController {
      *@Author: Zakary
      *@date: 2020/2/14 14:32
     */
-    @RequestMapping(value = "/viewBlogList",method = RequestMethod.GET)
+    @RequestMapping(value = "/viewBlogList",method = RequestMethod.POST)
     @ResponseBody
     public JSONResult viewBlogList(HttpServletRequest request){
         int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
         List<Blog> blogs=blogService.queryBlogListIntro(userId);
-        return JSONResult.ok(userId);
+        return JSONResult.ok(blogs);
     }
 
 }
