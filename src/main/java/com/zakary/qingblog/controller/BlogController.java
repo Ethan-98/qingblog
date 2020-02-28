@@ -1,6 +1,8 @@
 package com.zakary.qingblog.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.zakary.qingblog.domain.Blog;
+import com.zakary.qingblog.domain.Page;
 import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.utils.JSONResult;
 import org.apache.ibatis.annotations.Param;
@@ -63,8 +65,11 @@ public class BlogController {
 
     @RequestMapping(value = "/viewBlog",method = RequestMethod.POST)
     @ResponseBody
-    public JSONResult queryBlogInfo(@RequestParam String blogId){
-        return JSONResult.ok(blogService.queryBlogInfo(Integer.parseInt(blogId)));
+    public JSONResult queryBlogInfo(@RequestBody Blog blog){
+        int blogId=blog.getBlogId();
+        return JSONResult.ok(blogService.queryBlogInfo(blogId));
+
+//        return JSONResult.ok(blogService.queryBlogInfo(Integer.parseInt(blogId)));
     }
     /**
      *@description:
@@ -83,8 +88,15 @@ public class BlogController {
 
     @RequestMapping(value = "/viewAllBlogList",method = RequestMethod.POST)
     @ResponseBody
-    public JSONResult viewAllBlogList(HttpServletRequest request){
-        List<Blog> blogs=blogService.queryAllBlogListIntro();
+    public JSONResult viewSelfAllBlogList(HttpServletRequest request,@RequestBody Page page){
+        System.out.println(page.toString());
+        int start=(page.getPageNo()-1)*page.getPageSize();
+        int end=(page.getPageNo()-1)*page.getPageSize()+page.getPageSize();
+        page.setPageNo(start);
+        page.setPageSize(end);
+        List<Blog> blogs=blogService.queryAllBlogListIntro(page);
+        System.out.println(blogs.toString());
         return JSONResult.ok(blogs);
     }
+
 }

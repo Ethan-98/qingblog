@@ -69,5 +69,5 @@ public interface UserMapper {
 
     int selectAllCount();
 
-
+    void updateProfile(int userId,String id);
 }

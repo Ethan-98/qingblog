@@ -84,4 +84,9 @@
     select count(*)
     from user
   </select>
+  <update id="updateProfile">
+    update user
+    set user_image=#{id,jdbcType=VARCHAR}
+    where user_id=#{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

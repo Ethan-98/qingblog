@@ -44,6 +44,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User register(User user) {
+        System.out.println(user.getUserMail());
         int count = userMapper.selectCountByUserMail(user.getUserMail());
         if (count != 0) {
             throw new BusinessException("该用户已存在！");
@@ -59,27 +60,37 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User updateInfo(User user){
         User user1=userMapper.selectByPrimaryKey(user.getUserId());
+        if(userMapper.selectCountByUserMail(user.getUserMail())>0&&!user1.getUserMail().equals(user.getUserMail())){
+            throw new BusinessException("此邮箱已注册！");
+        }
         user.setUserPassword(user1.getUserPassword());
         user.setUserRegisterDate(user1.getUserRegisterDate());
         user.setUserImage(user1.getUserImage());
         user.setUserState(user1.getUserState());
         userMapper.updateByPrimaryKey(user);
-        return selectExceptPwd(user);
+        return selectExceptPwd(user.getUserId());
     }
 
     @Override
     public User updatePwd(User user){
+        System.out.println("_____________________________________________");
+        System.out.println(user.toString());
         User user1=userMapper.selectByPrimaryKey(user.getUserId());
         user1.setUserPassword(user.getUserPassword());
         userMapper.updateByPrimaryKey(user1);
-        return selectExceptPwd(user);
+        return selectExceptPwd(user.getUserId());
     }
 
     @Override
-    public User selectExceptPwd(User user){
-        User user1=userMapper.selectByPrimaryKey(user.getUserId());
+    public User selectExceptPwd(int userId){
+        User user1=userMapper.selectByPrimaryKey(userId);
         user1.setUserPassword(null);
         return user1;
     }
 
+    @Override
+    public void setProfile(int userId,String id){
+        userMapper.updateProfile(userId,id);
+//        return user;
+    }
 }

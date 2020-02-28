@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,8 +67,10 @@ public class LoginController {
     */
     @RequestMapping("/userUpdateInfo")
     @ResponseBody
-    public User userUpdateInfo(@RequestBody User user){
-        return loginService.updateInfo(user);
+    public JSONResult userUpdateInfo(HttpServletRequest request,@RequestBody User user){
+        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
+        user.setUserId(userId);
+        return JSONResult.ok(loginService.updateInfo(user));
     }
 
     /**
@@ -81,8 +82,9 @@ public class LoginController {
      */
     @RequestMapping("/userUpdatePwd")
     @ResponseBody
-    public User userUpdatePwd(@RequestBody User user){
-        return loginService.updatePwd(user);
+    public JSONResult userUpdatePwd(HttpServletRequest request,@RequestBody User user){
+        user.setUserId(Integer.parseInt(request.getSession().getAttribute("userId").toString()));
+        return JSONResult.ok(loginService.updatePwd(user));
     }
     /**
      *@description: 查询用户所有信息
@@ -93,7 +95,8 @@ public class LoginController {
     */
     @RequestMapping("/selectInfo")
     @ResponseBody
-    public User selectInfo(@RequestBody User user){
-        return loginService.selectExceptPwd(user);
+    public User selectInfo(HttpServletRequest request){
+        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
+        return loginService.selectExceptPwd(userId);
     }
 }

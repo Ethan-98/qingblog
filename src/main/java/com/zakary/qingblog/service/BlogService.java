@@ -1,6 +1,7 @@
 package com.zakary.qingblog.service;
 
 import com.zakary.qingblog.domain.Blog;
+import com.zakary.qingblog.domain.Page;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface BlogService {
     public int updateBlog(Blog blog);
     public Blog queryBlogInfo(int blogId);
     public List<Blog> queryBlogListIntro(int userId);
-    public List<Blog> queryAllBlogListIntro();
+    public List<Blog> queryAllBlogListIntro(Page page);
 }

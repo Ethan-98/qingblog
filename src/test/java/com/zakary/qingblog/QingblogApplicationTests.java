@@ -121,9 +121,10 @@ class QingblogApplicationTests {
         Blog blog=new Blog();
         blog.setUserId(userId);
         blog.setBlogTitle("rrrr");
-        blog.setBlogContent("pppppppppp");
-        int blogId=blogService.addBlog(blog);
-        System.out.println(blog.getBlogId());
+        blog.setBlogContent("VGVzdA==".getBytes());
+        blogService.addBlog(blog);
+        System.out.println(blogService.queryBlogInfo(blog.getBlogId()));
+        System.out.println(new String(blogService.queryBlogInfo(blog.getBlogId()).getBlogContent()));
     }
 
     @Test

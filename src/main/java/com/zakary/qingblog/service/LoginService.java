@@ -9,5 +9,6 @@ public interface LoginService {
     public User register(User user);
     public User updateInfo(User user);
     public User updatePwd(User user);
-    public User selectExceptPwd(User user);
+    public User selectExceptPwd(int userId);
+    public void setProfile(int userId,String id);
 }

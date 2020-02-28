@@ -1,6 +1,7 @@
 package com.zakary.qingblog.service.serviceImpl;
 
 import com.zakary.qingblog.domain.Blog;
+import com.zakary.qingblog.domain.Page;
 import com.zakary.qingblog.exp.BusinessException;
 import com.zakary.qingblog.mapper.BlogMapper;
 import com.zakary.qingblog.mapper.UserMapper;
@@ -32,6 +33,7 @@ public class BlogServiceImpl implements BlogService {
     public int addBlog(Blog blog) {
         blog.setReleaseDate(new Date());
         blog.setViews(0);
+//        System.out.println("传入时Content："+blog.getBlogContent());
         return blogMapper.insert(blog);
     }
 
@@ -60,7 +62,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> queryAllBlogListIntro(){
-        return blogMapper.selectAll();
+    public List<Blog> queryAllBlogListIntro(Page page){
+        return blogMapper.selectAll(page);
     }
 }

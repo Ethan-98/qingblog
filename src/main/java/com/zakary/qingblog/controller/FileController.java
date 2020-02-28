@@ -5,10 +5,17 @@ import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.zakary.qingblog.exp.BusinessException;
+import com.zakary.qingblog.mapper.UserMapper;
+import com.zakary.qingblog.service.LoginService;
 import com.zakary.qingblog.utils.JSONResult;
+import org.apache.commons.fileupload.RequestContext;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.jni.FileInfo;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @ClassNameFileController
@@ -43,6 +48,8 @@ public class FileController {
 
     @Autowired
     private GridFsTemplate gridFsTemplate;
+    @Autowired
+    private LoginService loginService;
 
     Logger logger = LoggerFactory.getLogger(FileController.class);
     @Autowired
@@ -71,6 +78,48 @@ public class FileController {
         return map;
     }
 
+    @RequestMapping(value = "/upLoadImgArray",method=RequestMethod.POST)
+    @ResponseBody
+    public JSONResult upLoadImgArray(@RequestParam(value = "files") MultipartFile[] formdata,
+                                                    @RequestParam(value = "positons") Integer[] positions) throws IOException {
+        List<Map<String,Object>> list = new ArrayList<>();
+        System.out.println(formdata.length);
+        for(int i=0;i<formdata.length;i++){
+            String fileName = formdata[i].getOriginalFilename();
+            ObjectId objectId = gridFsTemplate.store(formdata[i].getInputStream(),fileName,"image");
+            String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
+            System.out.println(id);
+//            List<Object> temp = new ArrayList<>();
+//            temp.add(positions[i]);
+////            temp.add("/qingblog/img?id="+id);
+            Map<String,Object> map=new HashMap<>();
+            map.put("success",1);
+            map.put("message",fileName);
+            map.put("position",positions[i]);
+            map.put("url","http://localhost:8080/qingblog/img?id="+id);
+            list.add(map);
+        }
+        return JSONResult.ok(list);
+    }
+    /**
+     *@description: 上传头像
+     *@param:  * @param null
+     *@return:
+     *@Author: Zakary
+     *@date: 2020/2/28 16:13
+    */
+    @RequestMapping(value = "/upLoadProfile",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONResult upLoadProfile(@RequestParam(value = "file") MultipartFile formdata,HttpServletRequest request)throws IOException{
+        String fileName = formdata.getOriginalFilename();
+        ObjectId objectId = gridFsTemplate.store(formdata.getInputStream(),fileName,"image");
+        String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
+        System.out.println(id);
+//        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
+        int userId=10001;
+        loginService.setProfile(userId,id);
+        return JSONResult.ok();
+    }
 
     @RequestMapping(value = "/img",method = RequestMethod.GET)
     public void getImg(HttpServletRequest request,HttpServletResponse response, @NotNull String id) throws IOException{
