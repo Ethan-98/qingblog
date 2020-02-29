@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -98,5 +99,18 @@ public class LoginController {
     public User selectInfo(HttpServletRequest request){
         int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
         return loginService.selectExceptPwd(userId);
+    }
+
+    /**
+     *@description: 根据userId查询用户所有信息
+     *@param:  * @param UserId
+     *@return:
+     *@Author: Zakary
+     *@date: 2020/2/9 19:19
+     */
+    @RequestMapping("/selectInfoByUserId")
+    @ResponseBody
+    public User selectInfoByUserId(@RequestBody User user){
+        return loginService.selectExceptPwd(user.getUserId());
     }
 }

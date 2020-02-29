@@ -115,8 +115,8 @@ public class FileController {
         ObjectId objectId = gridFsTemplate.store(formdata.getInputStream(),fileName,"image");
         String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
         System.out.println(id);
-//        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
-        int userId=10001;
+        int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
+//        int userId=10001;
         loginService.setProfile(userId,id);
         return JSONResult.ok();
     }
