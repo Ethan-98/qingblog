@@ -90,7 +90,7 @@ public class BlogController {
     @RequestMapping(value = "/viewAllBlogList",method = RequestMethod.POST)
     @ResponseBody
     public JSONResult viewSelfAllBlogList(HttpServletRequest request,@RequestBody Page page){
-        System.out.println(page.toString());
+//        System.out.println(page.toString());
         int start=(page.getPageNo()-1)*page.getPageSize();
         int end=(page.getPageNo()-1)*page.getPageSize()+page.getPageSize();
         page.setPageNo(start);
