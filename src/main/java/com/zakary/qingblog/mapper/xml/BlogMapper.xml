@@ -68,4 +68,9 @@
     from blog
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  <update id="updateViewsByBlogId" parameterType="java.lang.Integer">
+    update blog
+    set views=views+1
+    where blog_id=#{blogId,jdbcType=INTEGER}
+  </update>
 </mapper>

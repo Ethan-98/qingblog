@@ -65,4 +65,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> queryAllBlogListIntro(Page page){
         return blogMapper.selectAll(page);
     }
+
+    @Override
+    public void addViewsByBlogId(int blogId){
+        blogMapper.updateViewsByBlogId(blogId);
+    }
 }

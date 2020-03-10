@@ -19,4 +19,5 @@ public interface BlogService {
     public Blog queryBlogInfo(int blogId);
     public List<Blog> queryBlogListIntro(int userId);
     public List<Blog> queryAllBlogListIntro(Page page);
+    public void addViewsByBlogId(int blogId);
 }

@@ -3,6 +3,7 @@ package com.zakary.qingblog.controller;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.zakary.qingblog.domain.Blog;
 import com.zakary.qingblog.domain.Page;
+import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.utils.JSONResult;
 import org.apache.ibatis.annotations.Param;
@@ -95,8 +96,32 @@ public class BlogController {
         page.setPageNo(start);
         page.setPageSize(end);
         List<Blog> blogs=blogService.queryAllBlogListIntro(page);
-        System.out.println(blogs.toString());
+//        System.out.println(blogs.toString());
         return JSONResult.ok(blogs);
     }
-
+    /**
+     *@description: 获得某个用户的发布文章数
+     *@param:  * @param userId
+     *@return: int
+     *@Author: Zakary
+     *@date: 2020/3/7 17:12
+    */
+    @RequestMapping(value = "/getAuthBlogCount",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONResult getAuthBlogCount(@RequestBody User user){
+        return JSONResult.ok(blogService.queryBlogListIntro(user.getUserId()).size());
+    }
+    /**
+     *@description: 更新博客浏览量
+     *@param:  * @param blogId
+     *@return: null
+     *@Author: Zakary
+     *@date: 2020/3/7 20:56
+    */
+    @RequestMapping(value = "/updateViews",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONResult updateViews(@RequestBody Blog blog){
+        blogService.addViewsByBlogId(blog.getBlogId());
+        return JSONResult.ok();
+    }
 }

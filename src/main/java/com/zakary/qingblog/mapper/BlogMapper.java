@@ -51,4 +51,6 @@ public interface BlogMapper {
     int updateByPrimaryKey(Blog record);
 
     List<Blog> selectBlogListByUserId(int userId);
+
+    void updateViewsByBlogId(int blogId);
 }

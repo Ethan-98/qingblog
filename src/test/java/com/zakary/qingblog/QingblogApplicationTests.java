@@ -9,9 +9,11 @@ import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.zakary.qingblog.controller.FileController;
 import com.zakary.qingblog.domain.Blog;
+import com.zakary.qingblog.domain.FavoritesList;
 import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.exp.BusinessException;
 import com.zakary.qingblog.service.BlogService;
+import com.zakary.qingblog.service.FavoritesService;
 import com.zakary.qingblog.service.LoginService;
 //import org.apache.commons.io.FileUtils;
 //import org.apache.commons.io.IOUtils;
@@ -50,6 +52,8 @@ class QingblogApplicationTests {
     private BlogService blogService;
     @Autowired
     private FileController fileController;
+    @Autowired
+    private FavoritesService favoritesService;
 
     private Logger logger= LoggerFactory.getLogger(QingblogApplication.class);
     @Test
@@ -166,5 +170,21 @@ class QingblogApplicationTests {
     public void viewBlogList(){
         List<Blog> blogs=blogService.queryBlogListIntro(1);
         System.out.println(blogs.size());
+    }
+    @Test
+    public void testObject(){
+    }
+    @Test
+    public void selectFavoritesList(){
+        int userId=10001;
+        logger.info(favoritesService.queryFavoritesListByUserId(userId).toString());
+    }
+    @Test
+    public void addFavoritesList(){
+        int userId=10001;
+        FavoritesList favoritesList=new FavoritesList();
+        favoritesList.setFavoritesName("C++");
+        favoritesList.setUserId(10001);
+        favoritesService.addFavoritesList(favoritesList);
     }
 }
