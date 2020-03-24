@@ -1,6 +1,7 @@
 package com.zakary.qingblog.mapper;
 
 import com.zakary.qingblog.domain.Label;
+import com.zakary.qingblog.domain.LabelList;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -47,4 +48,6 @@ public interface LabelMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Label record);
+
+    List<Label> selectLabelByBlogId(LabelList labelList);
 }

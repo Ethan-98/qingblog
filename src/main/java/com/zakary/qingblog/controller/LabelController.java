@@ -1,6 +1,7 @@
 package com.zakary.qingblog.controller;
 
 import com.zakary.qingblog.domain.Label;
+import com.zakary.qingblog.domain.LabelList;
 import com.zakary.qingblog.service.LabelService;
 import com.zakary.qingblog.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class LabelController {
     @RequestMapping(value = "/addLabel",method = RequestMethod.POST)
     @ResponseBody
     public JSONResult addLabel(@RequestBody Map<String,Object> map){
-        System.out.println(map);
+//        System.out.println(map);
         List<Integer> labels=new ArrayList<Integer>();
         labels=(ArrayList<Integer>)map.get("selectedLabel");
 //        int[] label=(int[]) map.get("selectedLabel");
@@ -63,5 +64,20 @@ public class LabelController {
     public JSONResult insertLabel(@RequestBody Label label){
         labelService.insertLabel(label);
         return JSONResult.ok();
+    }
+
+    /**
+     *@description: 查询某篇博客的所有标签
+     *@param:  * @param blogId
+     *@return: List<Label>
+     *@Author: Zakary
+     *@date: 2020/3/24 14:53
+    */
+    @RequestMapping(value = "/selectLabelByBlogId",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONResult selectLabelByBlogId(@RequestBody LabelList labelList){
+//        System.out.println(labelList.getBlogId());
+//        labelService.selectLabelByBlogId(labelList);
+        return JSONResult.ok(labelService.selectLabelByBlogId(labelList));
     }
 }

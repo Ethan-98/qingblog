@@ -47,4 +47,9 @@ public class LabelServiceImpl implements LabelService {
         labelMapper.insert(label);
 
     }
+
+    @Override
+    public List<Label> selectLabelByBlogId(LabelList labelList) {
+        return labelMapper.selectLabelByBlogId(labelList);
+    }
 }

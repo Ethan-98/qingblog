@@ -55,4 +55,10 @@
     select label_id, label_title, label_description
     from label
   </select>
+  <select id="selectLabelByBlogId" resultMap="BaseResultMap">
+    select label.label_id,label_title,label_description
+    from label left join label_list
+    on label.label_id=label_list.label_id
+    where label_list.blog_id=#{blogId,jdbcType=INTEGER}
+  </select>
 </mapper>
