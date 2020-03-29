@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+    <!--要织入切面的目标类-->
+<!--    <weaver>-->
+<!--        <include within="com.zakary.qingblog.*" />-->
+<!--&lt;!&ndash;        <include within="org.springframework.boot..*" />&ndash;&gt;-->
+<!--    </weaver>-->
+    <weaver>
+        <include within="com.zakary.qingblog..*" />
+    </weaver>
+    <!--切面类-->
+    <aspects>
+<!--        <aspect name="com.zakary.qingblog.aop.logger" />-->
+        <aspect name="com.zakary.qingblog.aop.login" />
+    </aspects>
+</aspectj>

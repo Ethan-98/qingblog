@@ -14,19 +14,20 @@ spring:
     username: root
     password: 1qazXSW@
     # 使用druid数据源
-    filters: stat
-    maxActive: 20
-    initialSize: 1
-    maxWait: 60000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
+    druid:
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
   data:
     mongodb:
       host: 106.15.250.95
@@ -34,6 +35,8 @@ spring:
       authentication-database: qingblog
       password: 1qazXSW!
       username: root
+  aop:
+    auto: false
 mybatis:
   mapper-locations: classpath*:com/zakary/qingblog/mapper/xml/*.xml
   configuration:

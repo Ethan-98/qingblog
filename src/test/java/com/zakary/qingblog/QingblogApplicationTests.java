@@ -22,7 +22,8 @@ import com.zakary.qingblog.service.LoginService;
 import com.zakary.qingblog.utils.JSONResult;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.bson.types.ObjectId;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+//import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,10 +99,10 @@ class QingblogApplicationTests {
         File file = new File("D:\\temp.jpg");
 //        FileUtils.copyInputStreamToFile(gridFsResource.getInputStream(),file);
     }
-    @Test
-    public void delFile(){
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").ne(null)));
-    }
+//    @Test
+//    public void delFile(){
+//        gridFsTemplate.delete(Query.query(Criteria.where("_id").ne(null)));
+//    }
 
     @Test
     public void download(){
@@ -135,26 +136,26 @@ class QingblogApplicationTests {
         System.out.println(new String(blogService.queryBlogInfo(blog.getBlogId()).getBlogContent()));
     }
 
-    @Test
-    public void delImg(){
-        String id="5e43c5a64f0fa35869b29c60";
-        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
-        if(gridFSFile==null) {
-            throw new BusinessException("文件不存在");
-        }
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").is(id)));
-    }
+//    @Test
+//    public void delImg(){
+//        String id="5e43c5a64f0fa35869b29c60";
+//        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
+//        if(gridFSFile==null) {
+//            throw new BusinessException("文件不存在");
+//        }
+//        gridFsTemplate.delete(Query.query(Criteria.where("_id").is(id)));
+//    }
 
-    @Test
-    public void delBlog(){
-        Blog blog=new Blog();
-        blog.setBlogId(9);
-        String imgs[]={"5e43db0db8babd2544f062a9"};
-        blogService.deleteBlog(blog.getBlogId());
-        for(String img:imgs){
-            fileController.delImg(img);
-        }
-    }
+//    @Test
+//    public void delBlog(){
+//        Blog blog=new Blog();
+//        blog.setBlogId(9);
+//        String imgs[]={"5e43db0db8babd2544f062a9"};
+//        blogService.deleteBlog(blog.getBlogId());
+//        for(String img:imgs){
+//            fileController.delImg(img);
+//        }
+//    }
 
     @Test
     public void updateBlog(){

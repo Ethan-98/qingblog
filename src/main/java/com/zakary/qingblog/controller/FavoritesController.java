@@ -55,7 +55,7 @@ public class FavoritesController {
     /**
      *@description: 删除收藏文件夹,同时删除该文件夹下所有收藏
      *@param:  * @param favoritesId
-     *@return: 
+     *@return:
      *@Author: Zakary
      *@date: 2020/3/8 11:50
     */

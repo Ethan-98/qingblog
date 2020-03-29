@@ -38,7 +38,7 @@ public class LoginController {
     /**
      *@description: 登录功能
      *@param:  * @param null
-     *@return: 
+     *@return:
      *@Author: Zakary
      *@date: 2020/2/4 22:10
     */
@@ -88,7 +88,7 @@ public class LoginController {
         return JSONResult.ok(loginService.updatePwd(user));
     }
     /**
-     *@description: 查询用户所有信息
+     *@description: 查询用户自己的所有信息
      *@param:  * @param UserId
      *@return:
      *@Author: Zakary

@@ -18,6 +18,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface FavoritesListMapper {
+    void deleteByPrimaryKey(int favoritesId);
+    void insert(FavoritesList favoritesList);
+    void updateByPrimaryKey(FavoritesList favoritesList);
+    FavoritesList selectByPrimaryKey(int favoritesId);
+   List<FavoritesList> selectAll();
     public List<FavoritesList> selectFavoritesListByUserId(int userId);
     public int insertFavoritesList(FavoritesList favoritesList);
     public FavoritesList selectFavoritesListByFavoritesId(@Param("favoritesId") int favoritesId);

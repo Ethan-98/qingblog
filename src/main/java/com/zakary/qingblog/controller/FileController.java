@@ -84,20 +84,26 @@ public class FileController {
                                                     @RequestParam(value = "positons") Integer[] positions) throws IOException {
         List<Map<String,Object>> list = new ArrayList<>();
         System.out.println(formdata.length);
-        for(int i=0;i<formdata.length;i++){
-            String fileName = formdata[i].getOriginalFilename();
-            ObjectId objectId = gridFsTemplate.store(formdata[i].getInputStream(),fileName,"image");
-            String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
-            System.out.println(id);
+        try {
+            for (int i = 0; i < formdata.length; i++) {
+                String fileName = formdata[i].getOriginalFilename();
+                ObjectId objectId = gridFsTemplate.store(formdata[i].getInputStream(), fileName, "image");
+                String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
+                System.out.println(id);
 //            List<Object> temp = new ArrayList<>();
 //            temp.add(positions[i]);
 ////            temp.add("/qingblog/img?id="+id);
-            Map<String,Object> map=new HashMap<>();
-            map.put("success",1);
-            map.put("message",fileName);
-            map.put("position",positions[i]);
-            map.put("url","http://localhost:8080/qingblog/img?id="+id);
-            list.add(map);
+                Map<String, Object> map = new HashMap<>();
+                map.put("success", 1);
+                map.put("message", fileName);
+                map.put("position", positions[i]);
+                map.put("url", "http://localhost:8080/qingblog/img?id=" + id);
+                list.add(map);
+            }
+        }
+        catch (Exception e){
+            logger.info(e.getMessage());
+            throw new BusinessException("存储出错！");
         }
         return JSONResult.ok(list);
     }
