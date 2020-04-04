@@ -13,6 +13,7 @@ import com.zakary.qingblog.domain.FavoritesList;
 import com.zakary.qingblog.domain.LabelList;
 import com.zakary.qingblog.domain.User;
 import com.zakary.qingblog.exp.BusinessException;
+import com.zakary.qingblog.mapper.UserMapper;
 import com.zakary.qingblog.service.BlogService;
 import com.zakary.qingblog.service.FavoritesService;
 import com.zakary.qingblog.service.LabelService;
@@ -59,6 +60,8 @@ class QingblogApplicationTests {
     private FavoritesService favoritesService;
     @Autowired
     private LabelService labelService;
+    @Autowired
+    private UserMapper userMapper;
 
     private Logger logger= LoggerFactory.getLogger(QingblogApplication.class);
     @Test

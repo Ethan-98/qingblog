@@ -79,7 +79,7 @@ public class BlogController {
      *@Author: Zakary
      *@date: 2020/2/14 14:32
     */
-    @RequestMapping(value = "/viewBlogList",method = RequestMethod.POST)
+    @RequestMapping(value = "/viewSelfBlogList",method = RequestMethod.POST)
     @ResponseBody
     public JSONResult viewBlogList(HttpServletRequest request){
         int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
@@ -89,7 +89,7 @@ public class BlogController {
 
     @RequestMapping(value = "/viewAllBlogList",method = RequestMethod.POST)
     @ResponseBody
-    public JSONResult viewSelfAllBlogList(HttpServletRequest request,@RequestBody Page page){
+    public JSONResult viewAllBlogList(HttpServletRequest request,@RequestBody Page page){
 //        System.out.println(page.toString());
         int start=(page.getPageNo()-1)*page.getPageSize();
         int end=(page.getPageNo()-1)*page.getPageSize()+page.getPageSize();

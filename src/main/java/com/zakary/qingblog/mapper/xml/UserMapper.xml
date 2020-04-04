@@ -89,4 +89,9 @@
     set user_image=#{id,jdbcType=VARCHAR}
     where user_id=#{userId,jdbcType=INTEGER}
   </update>
+  <select id="selectInfo" resultType="com.zakary.qingblog.domain.User">
+    select *
+    from user
+    where user_mail = #{userMail,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -11,4 +11,5 @@ public interface LoginService {
     public User updatePwd(User user);
     public User selectExceptPwd(int userId);
     public void setProfile(int userId,String id);
+    public User getUserInfo(String userMail);
 }

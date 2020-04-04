@@ -93,4 +93,9 @@ public class LoginServiceImpl implements LoginService {
         userMapper.updateProfile(userId,id);
 //        return user;
     }
+
+    @Override
+    public User getUserInfo(String userMail) {
+        return userMapper.selectInfo(userMail);
+    }
 }

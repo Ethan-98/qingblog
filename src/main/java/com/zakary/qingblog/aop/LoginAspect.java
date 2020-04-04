@@ -1,14 +1,18 @@
 package com.zakary.qingblog.aop;
 
 import com.zakary.qingblog.QingblogApplication;
+import com.zakary.qingblog.exp.BusinessException;
+import com.zakary.qingblog.utils.AnalysisUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.regex.Pattern;
 
 /**
  * @ClassNamelogin
@@ -18,7 +22,8 @@ import org.springframework.stereotype.Component;
  * @Version V1.0
  **/
 @Aspect
-public class login {
+@DeclarePrecedence("InterceptorAspect,AuthorityAspect,LoginAspect,ParamsCheckAspect,LoggerAspect")
+public class LoginAspect {
 //    * execution(* com.oysept.springboot.controller.AspectJController.*(..)) ==> 该包下AspectJController类的任何方法。
     private Logger logger= LoggerFactory.getLogger(QingblogApplication.class);
     /**
@@ -41,19 +46,27 @@ public class login {
      * @param point
      * @return
      */
-    @Around("loginAop()")
-    public Object doProcess(ProceedingJoinPoint point) throws Throwable {
-//        System.out.println("==>@Around begin----- ");
-        String args="";
-        Object[] objArgs = point.getArgs();
-        for(Object obj : objArgs) {
-//            System.out.print("args: "+obj + "\t");
-            args+="args: "+obj +"\t";
-        }
-        logger.info("User login: ["+args+"]");
-//        System.out.println();
 
-//        System.out.println("==>@Around end----- ");
-        return point.proceed();
+//    @Around("loginAop()")
+//    public Object doProcess(ProceedingJoinPoint point) throws Throwable {
+////        System.out.println("==>@Around begin----- ");
+//        String args="";
+//        Object[] objArgs = point.getArgs();
+//        for(Object obj : objArgs) {
+////            System.out.print("args: "+obj + "\t");
+//            args+="args: "+obj +"\t";
+//        }
+//        logger.info("User login: ["+args+"]");
+////        System.out.println();
+//
+////        System.out.println("==>@Around end----- ");
+//        return point.proceed();
+//    }
+    @Before("loginAop()")
+    public void before(JoinPoint point) throws Throwable {
+        Object[] objArgs = point.getArgs();
+        String mail= AnalysisUtils.getObjectToMap(objArgs[0]).get("userMail").toString();
+        String password=AnalysisUtils.getObjectToMap(objArgs[0]).get("userPassword").toString();
+        logger.info("User Login : [ userMail : "+mail+"\t , password : "+password+"\t ]");
     }
 }

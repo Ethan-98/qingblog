@@ -11,7 +11,9 @@
     </weaver>
     <!--切面类-->
     <aspects>
-<!--        <aspect name="com.zakary.qingblog.aop.logger" />-->
-        <aspect name="com.zakary.qingblog.aop.login" />
+<!--        <aspect name="com.zakary.qingblog.aop.LoggerAspect" />-->
+        <aspect name="com.zakary.qingblog.aop.LoginAspect"/>
+        <aspect name="com.zakary.qingblog.aop.InterceptorAspect"/>
+        <aspect name="com.zakary.qingblog.aop.ParamsCheckAspect"/>
     </aspects>
 </aspectj>

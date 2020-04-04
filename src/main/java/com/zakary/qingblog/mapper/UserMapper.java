@@ -70,4 +70,6 @@ public interface UserMapper {
     int selectAllCount();
 
     void updateProfile(int userId,String id);
+
+    User selectInfo(String userMail);
 }

@@ -1,5 +1,8 @@
 package com.zakary.qingblog.conf;
 
+import com.zakary.qingblog.aop.AuthorityAspect;
+import org.aspectj.lang.Aspects;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +20,14 @@ import static org.springframework.context.annotation.EnableLoadTimeWeaving.Aspec
  * @Version V1.0
  **/
 @Configuration
-@ComponentScan("com.zakary.qingblog.controller")
-@EnableLoadTimeWeaving(aspectjWeaving=AUTODETECT)
+@ComponentScan("com.zakary.qingblog")
+//@EnableLoadTimeWeaving(aspectjWeaving=ENABLED)
 public class CustomLtwConfig{
+
+    @Bean
+    public AuthorityAspect authorityAspect(){
+        AuthorityAspect authorityAspect= Aspects.aspectOf(AuthorityAspect.class);
+        return authorityAspect;
+    }
 
 }
