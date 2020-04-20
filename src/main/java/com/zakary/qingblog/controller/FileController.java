@@ -59,8 +59,8 @@ public class FileController {
     @RequestMapping("/upLoadImg")
     @ResponseBody
     public Map upLoadImg(HttpServletRequest request,@RequestParam(value = "editormd-image-file") MultipartFile file) throws IOException {
-        logger.info("【FileController】 fileName={},fileOrginNmae={},fileSize={}", file.getName(), file.getOriginalFilename(), file.getSize());
-        logger.info(request.getContextPath());
+//        logger.info("【FileController】 fileName={},fileOrginNmae={},fileSize={}", file.getName(), file.getOriginalFilename(), file.getSize());
+//        logger.info(request.getContextPath());
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
 //        String newFileName = System.currentTimeMillis()+request.getSession().getAttribute("userId").toString() + "." + suffix;
@@ -69,7 +69,7 @@ public class FileController {
 //        file.transferTo(localFile);
         ObjectId objectId = gridFsTemplate.store(file.getInputStream(),fileName,"image");
         String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
-        System.out.println(id);
+//        System.out.println(id);
 //        logger.info(localFile.getAbsolutePath());
         Map<String,Object> map=new HashMap<>();
         map.put("success",1);
@@ -83,13 +83,13 @@ public class FileController {
     public JSONResult upLoadImgArray(@RequestParam(value = "files") MultipartFile[] formdata,
                                                     @RequestParam(value = "positons") Integer[] positions) throws IOException {
         List<Map<String,Object>> list = new ArrayList<>();
-        System.out.println(formdata.length);
+//        System.out.println(formdata.length);
         try {
             for (int i = 0; i < formdata.length; i++) {
                 String fileName = formdata[i].getOriginalFilename();
                 ObjectId objectId = gridFsTemplate.store(formdata[i].getInputStream(), fileName, "image");
                 String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
-                System.out.println(id);
+//                System.out.println(id);
 //            List<Object> temp = new ArrayList<>();
 //            temp.add(positions[i]);
 ////            temp.add("/qingblog/img?id="+id);
@@ -120,7 +120,7 @@ public class FileController {
         String fileName = formdata.getOriginalFilename();
         ObjectId objectId = gridFsTemplate.store(formdata.getInputStream(),fileName,"image");
         String id = objectId.toString(); //这个id是查找文件用的，可以存在mysql里
-        System.out.println(id);
+//        System.out.println(id);
         int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
 //        int userId=10001;
         loginService.setProfile(userId,id);
@@ -128,7 +128,7 @@ public class FileController {
     }
 
     @RequestMapping(value = "/img",method = RequestMethod.GET)
-    public void getImg(HttpServletRequest request,HttpServletResponse response, @NotNull String id) throws IOException{
+    public void getImg(HttpServletResponse response, @NotNull String id) throws IOException{
         Criteria criteria=new Criteria();
 //        GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(criteria.andOperator(Criteria.where("_id").is(id),Criteria.where("filename").regex("^.*"+request.getSession().getAttribute("userId").toString()+".*$"))));
         GridFSFile gridFSFile=gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));

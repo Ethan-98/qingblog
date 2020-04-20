@@ -48,4 +48,8 @@ public interface CommentPraiseMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(CommentPraise record);
+
+    void delete(CommentPraise commentPraise);
+
+    int select(CommentPraise commentPraise);
 }

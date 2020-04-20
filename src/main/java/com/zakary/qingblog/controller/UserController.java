@@ -82,6 +82,7 @@ public class UserController {
     @ResponseBody
     public JSONResult selectInfo(HttpServletRequest request){
         int userId=Integer.parseInt(request.getSession().getAttribute("userId").toString());
+//        System.out.println("controller: selectInfo"+userId);
         return JSONResult.ok(loginService.selectExceptPwd(userId));
     }
 
@@ -95,6 +96,7 @@ public class UserController {
     @RequestMapping("/selectInfoByUserId")
     @ResponseBody
     public JSONResult selectInfoByUserId(@RequestBody User user){
+//        System.out.println("controller: selectInfoByUserId"+user.getUserId());
         User user1=loginService.selectExceptPwd(user.getUserId());
 //        System.out.println(user1);
         return JSONResult.ok(user1);

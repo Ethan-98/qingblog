@@ -55,13 +55,13 @@ public class LoggerAspect {
         }
         try{
             Object object=point.proceed();
-            String outParams=object.toString();
-            logger.info("REQUEST \t: "+point.getTarget().toString()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], OUTPUT : "+outParams);
+            String outParams=object==null?("null"):object.toString();
+            logger.info("REQUEST \t: "+point.getTarget().toString()+"."+point.getSignature().getName()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], OUTPUT : "+outParams);
             return object;
         }
         catch (Throwable throwable){
             throwable.printStackTrace();
-            logger.error("REQUEST : \t: "+point.getTarget().toString()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], "+throwable.getMessage());
+            logger.error("REQUEST : \t: "+point.getTarget().toString()+"."+point.getSignature().getName()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], "+throwable.getMessage());
             return null;
         }
 
@@ -87,13 +87,13 @@ public class LoggerAspect {
         }
         try{
             Object object=point.proceed();
-            String outParams=object.toString();
-            logger.info("SERVICE \t: "+point.getTarget().toString()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], OUTPUT : "+outParams);
+            String outParams=object==null?("null"):object.toString();
+            logger.info("SERVICE \t: "+point.getTarget().toString()+"."+point.getSignature().getName()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], OUTPUT : "+outParams);
             return object;
         }
         catch (Throwable throwable){
             throwable.printStackTrace();
-            logger.error("SERVICE \t: "+point.getTarget().toString()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], "+throwable.getMessage());
+            logger.error("SERVICE \t: "+point.getTarget().toString()+"."+point.getSignature().getName()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], "+throwable.getMessage());
             return null;
         }
 
@@ -119,13 +119,13 @@ public class LoggerAspect {
         }
         try{
             Object object=point.proceed();
-            String outParams=object.toString();
-            logger.info("MAPPER \t: "+point.getTarget().toString()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], OUTPUT : "+outParams);
+            String outParams=object==null?("null"):object.toString();
+            logger.info("MAPPER \t: "+point.getTarget().toString()+"."+point.getSignature().getName()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], OUTPUT : "+outParams);
             return object;
         }
         catch (Throwable throwable){
             throwable.printStackTrace();
-            logger.error("MAPPER \t: "+point.getTarget().toString()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], "+throwable.getMessage());
+            logger.error("MAPPER \t: "+point.getTarget().toString()+"."+point.getSignature().getName()+"\t,USERID : "+userId+"\t,ARGS : ["+inParams+"\t], "+throwable.getMessage());
             return null;
         }
     }

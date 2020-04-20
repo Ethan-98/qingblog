@@ -44,7 +44,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User register(User user) {
-        System.out.println(user.getUserMail());
+//        System.out.println(user.getUserMail());
         int count = userMapper.selectCountByUserMail(user.getUserMail());
         if (count != 0) {
             throw new BusinessException("该用户已存在！");
@@ -73,8 +73,8 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User updatePwd(User user){
-        System.out.println("_____________________________________________");
-        System.out.println(user.toString());
+//        System.out.println("_____________________________________________");
+//        System.out.println(user.toString());
         User user1=userMapper.selectByPrimaryKey(user.getUserId());
         user1.setUserPassword(user.getUserPassword());
         userMapper.updateByPrimaryKey(user1);

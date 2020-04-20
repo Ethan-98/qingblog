@@ -2,9 +2,11 @@ package com.zakary.qingblog.mapper;
 
 import com.zakary.qingblog.domain.Comment;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -48,4 +50,10 @@ public interface CommentMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Comment record);
+
+    List<Map<String,Object>> selectAllByBlogId(@Param("blogId") int blogId, @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
+
+    List<Map<String,Object>> selectChildCommentByParentId(@Param("parentCommentId")int parentCommentId,@Param("pageNo") int pageNo,@Param("pageSize")int pageSize);
+
+    Map<String,Object> selectByCommentByCommentId(@Param("commentId")int commentId);
 }

@@ -69,6 +69,7 @@ public class ParamsCheckAspect {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session=attr.getRequest().getSession(true);
         String userId2=session.getAttribute("userId")!=null?session.getAttribute("userId").toString():null;
+        logger.info("userID:     "+userId1+"  "+userId2);
         if(userId1==null&&userId2==null){
             throw new BusinessException("缺少必要参数");
         }
